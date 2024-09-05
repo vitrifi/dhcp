@@ -410,6 +410,9 @@ func (c *Client) Request(ctx context.Context, advertise *dhcpv6.Message, modifie
 		return nil, err
 	}
 	msg, err := c.SendAndRead(ctx, c.serverAddr, request, nil)
+	if err != nil {
+		return nil, err
+	}
 	inner, err := msg.GetInnerMessage()
 	if err != nil {
 		return nil, err
